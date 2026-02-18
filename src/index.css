@@ -1,0 +1,45 @@
+/* ============================= */
+/* Google Fonts */
+/* ============================= */
+@import url('https://fonts.googleapis.com/css2?family=Grandstander:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+/* ============================= */
+/* Tailwind */
+/* ============================= */
+@import "tailwindcss";
+
+/* ============================= */
+/* Custom Theme  */
+/* ============================= */
+@theme {
+  /* Colors */
+  --color-primary-bg: #0d1117;
+  --color-accent: #FB2C36;
+  --color-accent-light: #3A1B1D;
+  --color-accent-hover: #c1272d;
+  --color-text-primary: #fafafa;
+  --color-text-secondary: #c9d1d9;
+
+
+  /* Fonts */ 
+  --font-heading: "Grandstander", cursive;
+  --font-body: "Space Mono", monospace;
+}
+
+
+
+
+.active {
+  background-color: var(--color-accent-light); 
+  color: var(--color-text-primary);
+  padding: 4px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--color-accent);
+  font-weight: 600;
+}
+
+::selection {
+  background-color: var(--color-accent-hover);
+  color: var(--color-text-primary);
+}
