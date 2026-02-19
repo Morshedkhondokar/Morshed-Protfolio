@@ -4,6 +4,8 @@ import { IoClose } from "react-icons/io5";
 import { Link } from "react-scroll";
 import MobileMenu from "./MobileMenu";
 import HoverText from "./HoverText";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 
 const menuItems = [
   { name: "Home", link: "home" },
@@ -16,6 +18,30 @@ const menuItems = [
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [active, setActive] = useState("home");
+
+  useGSAP(() => {
+    const tl = gsap.timeline();
+    // First come nav bar and then logo and then nav links staggered
+    tl.from("nav", { y: -20, opacity: 0, duration: 0.8 });
+
+    // secondly logo comes
+    tl.from("nav h1", { x: -20, opacity: 0, duration: 0.8 });
+
+    //if mobile menu icon is visible then animate it as well
+    tl.from(".icon", { y: -20, opacity: 0, duration: 0.8 }, "-=0.6");
+
+    // finally nav links come staggered
+    tl.from(
+      "ul li ",
+      {
+        y: -20,
+        opacity: 0,
+        duration: 0.5,
+        stagger: 0.1,
+      },
+      "-=0.4",
+    ); // start this animation 0.4 seconds before the previous one ends
+  });
 
   return (
     <>
@@ -42,8 +68,8 @@ export default function Navbar() {
                 spy={true}
                 offset={-80}
                 activeClass="active"
-                className={`cursor-pointer text-gray-300 hover:text-text-primary transition-all duration-300 border-none
-                ${  active === item.link && "active" }`}
+                className={` cursor-pointer text-gray-300 hover:text-text-primary transition-all duration-300 border-none
+                ${active === item.link && "active"}`}
                 onSetActive={() => setActive(item.link)}
               >
                 <HoverText>{item.name}</HoverText>
@@ -53,7 +79,7 @@ export default function Navbar() {
         </ul>
 
         {/* mobile icno */}
-        <div className="md:hidden text-3xl">
+        <div className="icon md:hidden text-3xl">
           <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
             {isMenuOpen ? <IoClose /> : <IoIosMenu />}
           </button>

@@ -31,7 +31,7 @@ export default function MobileMenu({
               className={`text-lg cursor-pointer transition-all duration-300 border-none
               ${
                 active === item.link
-                  ? "text-white font-semibold"
+                  ? "text-white font-semibold active"
                   : "text-gray-400 hover:text-white"
               }`}
             >
