@@ -1,3 +1,5 @@
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 import { Link } from "react-scroll";
 
@@ -7,6 +9,18 @@ export default function Hero() {
     duration: 800,
     offset: -100,
   };
+
+
+  useGSAP(() => {
+    const tl = gsap .timeline();
+    tl.from(".hero-text", {
+      y: 50,
+      opacity: 0,
+      stagger: 0.3,
+      ease: "power3.out",
+    });
+  
+  })
 
   return (
     <section
@@ -31,7 +45,7 @@ export default function Hero() {
           </p>
 
           <h1
-            className="text-5xl md:text-7xl font-extrabold font-heading 
+            className="hero-text text-5xl md:text-7xl font-extrabold font-heading 
             tracking-widest uppercase bg-linear-to-r 
             from-white via-gray-300 to-gray-500 
             bg-clip-text text-transparent"

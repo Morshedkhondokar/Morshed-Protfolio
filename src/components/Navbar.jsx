@@ -3,6 +3,7 @@ import { IoIosMenu } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
 import { Link } from "react-scroll";
 import MobileMenu from "./MobileMenu";
+import HoverText from "./HoverText";
 
 const menuItems = [
   { name: "Home", link: "home" },
@@ -45,7 +46,7 @@ export default function Navbar() {
                 ${  active === item.link && "active" }`}
                 onSetActive={() => setActive(item.link)}
               >
-                {item.name}
+                <HoverText>{item.name}</HoverText>
               </Link>
             </li>
           ))}

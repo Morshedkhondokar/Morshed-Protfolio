@@ -1,4 +1,5 @@
 import React from "react";
+import HoverText from "./HoverText";
 
 export default function Contact() {
   return (
@@ -91,11 +92,11 @@ export default function Contact() {
           <div className="flex justify-center pt-4">
             <button
               type="submit"
-              className="px-10 py-4 border-2 border-white rounded-xl text-white uppercase text-sm cursor-pointer
+              className="px-10 py-4 border-2 text-xl border-white rounded-xl text-white uppercase cursor-pointer
               font-black tracking-[0.2em] hover:bg-white hover:text-black transition-all duration-500 
               active:scale-95"
             >
-              Send Message
+             <HoverText>Send Message</HoverText>
             </button>
           </div>
         </form>
