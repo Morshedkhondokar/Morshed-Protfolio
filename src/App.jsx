@@ -7,6 +7,8 @@ import Navbar from "./components/Navbar";
 import Projects from "./components/Projects";
 import Skills from "./components/Skills";
 import CustomCursor from "./components/CustomCursor";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/all";
 
 
 // Initialize Lenis
@@ -18,6 +20,8 @@ const lenis = new Lenis({
 lenis.on('scroll', () => {
   // console.log(e);
 });
+
+gsap.registerPlugin(ScrollTrigger); 
 
 
 export default function App() {
