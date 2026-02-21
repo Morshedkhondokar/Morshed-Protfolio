@@ -11,18 +11,47 @@ export default function Hero() {
     offset: -100,
   };
 
-
   useGSAP(() => {
-    const tl = gsap .timeline();
-    tl.from(".hero-text", {
-      xPercent: 200,
+    const tl = gsap.timeline();
+    tl.from(".small-title", {
+      y: 20,
       opacity: 0,
-      stagger: 0.3,
       duration: 1,
-      ease: "power3.out",
-    });
-  
-  })
+    })
+      .from(".glow", {
+        scale: 0,
+        opacity: 0,
+        duration: 1.5,
+      })
+      .from(
+        ".hero-text",
+        {
+          y: 50,
+          opacity: 0,
+          duration: 1,
+        },
+        "-=1",
+      )
+      .from(
+        ".sub-text",
+        {
+          y: 50,
+          opacity: 0,
+          duration: 1,
+        },
+        "-=0.8",
+      )
+      .from(".hero-btn", {
+        opacity: 0,
+        y: 20,
+        duration: 1,
+        stagger: 0.2,
+      })
+      .from(".hero-down-arrow", {
+        opacity: 0,
+        duration: 1,
+      });
+  }, []);
 
   return (
     <section
@@ -31,15 +60,15 @@ export default function Hero() {
     >
       {/* Background Glow */}
       <div
-        className="absolute w-100 h-110 md:w-125  
+        className="glow absolute w-100 h-110 md:w-125  
         bg-accent/20 blur-[120px] rounded-full 
         -z-10 border border-accent"
       />
 
-      <div className="flex flex-col items-center justify-center gap-10 mt-32">
+      <div className="flex flex-col items-center justify-center gap-10 md:mt-32">
         {/* Text Content */}
         <div className="space-y-5">
-          <p className="text-gray-400 tracking-widest uppercase text-sm">
+          <p className="small-title text-gray-400 tracking-widest uppercase text-sm">
             Hi, I'm{" "}
             <span className="text-accent-hover font-bold font-heading">
               Morshed
@@ -55,7 +84,7 @@ export default function Hero() {
             Mern Stack Developer
           </h1>
 
-          <h3 className="text-[20px] md:text-5xl font-semibold text-gray-300 leading-tight">
+          <h3 className="sub-text text-[20px] md:text-5xl font-semibold text-gray-300 leading-tight">
             Crafting modern and scalable <br />
             web applications.
           </h3>
@@ -63,7 +92,11 @@ export default function Hero() {
 
         {/* Buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-          <Link to="contact" {...scrollProps}>
+          <Link
+            to="contact"
+            {...scrollProps}
+            className="hero-btn"
+          >
             <button
               className="flex items-center gap-3 px-8 py-3 md:text-xl 
               bg-accent/10 backdrop-blur-lg 
@@ -75,9 +108,13 @@ export default function Hero() {
             </button>
           </Link>
 
-          <Link to="projects" {...scrollProps}>
+          <Link
+            to="projects"
+            {...scrollProps}
+            className="hero-btn"
+          >
             <button
-              className="px-8 py-3 border border-accent-hover
+              className=" px-8 py-3 border border-accent-hover
               rounded-2xl text-accent cursor-pointer md:text-xl
               hover:bg-accent hover:text-white active:scale-95
               transition-all duration-300 hover:shadow-2xl hover:shadow-accent/20"
@@ -89,7 +126,11 @@ export default function Hero() {
 
         {/* Scroll Indicator */}
         <div className="animate-bounce text-accent-hover text-2xl md:mt-6">
-          <Link to="about" {...scrollProps} className="cursor-pointer">
+          <Link
+            to="about"
+            {...scrollProps}
+            className="cursor-pointer hero-down-arrow"
+          >
             <FaArrowDown />
           </Link>
         </div>
