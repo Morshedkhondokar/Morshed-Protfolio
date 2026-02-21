@@ -2,6 +2,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 import { Link } from "react-scroll";
+import HoverText from "./HoverText";
 
 export default function Hero() {
   const scrollProps = {
@@ -14,9 +15,10 @@ export default function Hero() {
   useGSAP(() => {
     const tl = gsap .timeline();
     tl.from(".hero-text", {
-      y: 50,
+      xPercent: 200,
       opacity: 0,
       stagger: 0.3,
+      duration: 1,
       ease: "power3.out",
     });
   
@@ -63,12 +65,12 @@ export default function Hero() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
           <Link to="contact" {...scrollProps}>
             <button
-              className="flex items-center gap-3 px-8 py-3 
+              className="flex items-center gap-3 px-8 py-3 md:text-xl 
               bg-accent/10 backdrop-blur-lg 
               border border-accent/20 rounded-2xl text-white 
               hover:bg-accent/20 transition-all duration-300 cursor-pointer hover:shadow-2xl hover:shadow-accent/20 active:scale-95"
             >
-              Let's Talk
+              <HoverText>Let's Talk</HoverText>
               <FaArrowUp className="rotate-45" />
             </button>
           </Link>
@@ -76,11 +78,11 @@ export default function Hero() {
           <Link to="projects" {...scrollProps}>
             <button
               className="px-8 py-3 border border-accent-hover
-              rounded-2xl text-accent cursor-pointer
+              rounded-2xl text-accent cursor-pointer md:text-xl
               hover:bg-accent hover:text-white active:scale-95
               transition-all duration-300 hover:shadow-2xl hover:shadow-accent/20"
             >
-              See Projects
+              <HoverText>View Projects</HoverText>
             </button>
           </Link>
         </div>
