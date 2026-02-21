@@ -1,3 +1,6 @@
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+
 import {
   SiJavascript,
   SiTypescript,
@@ -33,6 +36,36 @@ const skills = [
 ];
 
 export default function Skills() {
+  useGSAP(() => {
+    // 1. Animate title and divider
+    gsap.from(".skills-title, .skills-divider", {
+      scrollTrigger: {
+        trigger: ".skills-title",
+        start: "top 85%",
+      },
+      y: 30,
+      opacity: 0,
+      duration: 1,
+      stagger: 0.2,
+      ease: "power3.out",
+    });
+
+    //  2. skill-card to stagger animation
+    gsap.from(".skill-card", {
+      scrollTrigger: {
+        trigger: ".all-skills",
+        start: "top 80%",
+      },
+      scale: 0.8,
+      opacity: 0,
+      y: 40,
+      duration: 0.6,
+      stagger: 0.1,
+      ease: "back.out(1.2)",
+      clearProps: "all", // after animation completes, clear inline styles to allow hover effects to work properly
+    });
+  }, []);
+
   return (
     <section
       id="skills"
@@ -45,10 +78,9 @@ export default function Skills() {
       />
 
       <div className="max-w-6xl mx-auto">
-        {/* Modern Title Section */}
-        <div className="mb-20 flex flex-col items-center text-center">
+        {/* Modern Title Section - Added 'skills-title' class */}
+        <div className="skills-title mb-20 flex flex-col items-center text-center">
           <div className="relative inline-block">
-            {/* Soft Glow behind title */}
             <div className="absolute -inset-x-10 top-1/2 -translate-y-1/2 h-12 bg-accent/10 blur-3xl -z-10" />
 
             <h2 className="text-5xl md:text-6xl font-black font-heading text-white uppercase tracking-[-0.05em] leading-none">
@@ -56,31 +88,31 @@ export default function Skills() {
               <span className="text-accent relative">
                 Expertise
                 <span
-                    className="absolute -right-4 bottom-3 w-2 h-2 bg-white rounded-full 
-          shadow-[0_0_15px_rgba(255,255,255,0.8)] hidden md:block animate-bounce"
-                  />
+                  className="absolute -right-4 bottom-3 w-2 h-2 bg-white rounded-full 
+                shadow-[0_0_15px_rgba(255,255,255,0.8)] hidden md:block animate-bounce"
+                />
               </span>
             </h2>
           </div>
 
-          {/* Minimalist Divider */}
-           <div className="flex items-center gap-2 mt-4">
+          {/* Minimalist Divider - Added 'skills-divider' class */}
+          <div className="skills-divider flex items-center gap-2 mt-4">
             <div className="w-24 md:w-80 h-0.5 bg-linear-to-r from-transparent to-accent" />
             <div className="w-2 h-2 rounded-full bg-accent animate-pulse shadow-[0_0_10px_#FB2C36]" />
             <div className="w-24 md:w-80 h-0.5 bg-linear-to-l from-transparent to-accent" />
           </div>
         </div>
 
-        {/* Skills Grid - Gap fixed with max-w-4xl */}
-        <div className="max-w-4xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 justify-items-center">
+        {/* Skills Grid */}
+        <div className="all-skills max-w-4xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 justify-items-center">
           {skills.map((skill, index) => (
             <div
               key={index}
-              className="group relative flex flex-col items-center justify-center
-             w-full h-35 max-w-40 rounded-2xl 
-             bg-[#171719]/40 backdrop-blur-md border border-white/5 
-             hover:border-accent/40 transition-all duration-500 
-             hover:-translate-y-2 hover:shadow-[0_10px_30px_-10px_rgba(251,44,54,0.2)]"
+              className="skill-card group relative flex flex-col items-center justify-center
+               w-full h-35 max-w-40 rounded-2xl 
+               bg-[#171719]/40 backdrop-blur-md border border-white/5 
+               hover:border-accent/40 transition-all duration-500 
+               hover:-translate-y-2 hover:shadow-[0_10px_30px_-10px_rgba(251,44,54,0.2)]"
             >
               {/* Inner Hover Glow */}
               <div className="absolute inset-0 bg-accent/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl" />

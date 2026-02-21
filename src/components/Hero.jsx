@@ -56,7 +56,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center text-center px-4 "
+      className="relative min-h-screen flex items-center justify-center text-center px-4"
     >
       {/* Background Glow */}
       <div
