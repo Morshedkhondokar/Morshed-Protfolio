@@ -15,7 +15,7 @@ export default function Contact() {
         scrollTrigger: {
           trigger: contactRef.current,
           start: "top 70%",
-          markers: true,
+          // markers: true,
         },
       });
 

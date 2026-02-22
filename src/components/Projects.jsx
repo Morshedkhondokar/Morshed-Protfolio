@@ -70,7 +70,7 @@ export default function Projects() {
   const projectsRef = useRef(null);
 
   useGSAP(() => {
-    gsap.from(".ghost, .badge, .project-title, .project-divider ", {
+    gsap.from(".ghost, .badge, .project-title", {
       scrollTrigger: {
         trigger: ".project-title",
         start: "top 70%",
@@ -82,6 +82,19 @@ export default function Projects() {
       stagger: 0.4,
       ease: "power4.out",
     });
+
+    gsap.from(".project-divider", {
+      scrollTrigger: {
+        trigger: ".project-divider",
+        start: "top 70%",
+        // markers: true,
+      },
+      scaleX: 0,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power2.out",
+    });
+
 
     gsap.fromTo(
       projectsRef.current.children,

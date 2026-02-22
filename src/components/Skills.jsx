@@ -38,7 +38,7 @@ const skills = [
 export default function Skills() {
   useGSAP(() => {
     // 1. Animate title and divider
-    gsap.from(".skills-title, .skills-divider", {
+    gsap.from(".skills-title", {
       scrollTrigger: {
         trigger: ".skills-title",
         start: "top 85%",
@@ -48,6 +48,17 @@ export default function Skills() {
       duration: 1,
       stagger: 0.2,
       ease: "power3.out",
+    });
+    gsap.from(".skills-divider", {
+      scrollTrigger: {
+        trigger: ".skills-title",
+        start: "top 70%",
+        // markers: true,
+      },
+      scaleX: 0,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power2.out",
     });
 
     //  2. skill-card to stagger animation
