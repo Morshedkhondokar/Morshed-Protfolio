@@ -1,4 +1,6 @@
-
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { useRef } from "react";
 import { FaGithub, FaExternalLinkAlt, FaCode } from "react-icons/fa";
 
 const projects = [
@@ -65,6 +67,41 @@ const projects = [
 ];
 
 export default function Projects() {
+  const projectsRef = useRef(null);
+
+  useGSAP(() => {
+    gsap.from(".ghost, .badge, .project-title, .project-divider ", {
+      scrollTrigger: {
+        trigger: ".project-title",
+        start: "top 70%",
+        // markers:true
+      },
+      y: 50,
+      opacity: 0,
+      duration: 1,
+      stagger: 0.4,
+      ease: "power4.out",
+    });
+
+    gsap.fromTo(
+      projectsRef.current.children,
+      { opacity: 0, y: 40 , scale: 0.95},
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 1,
+        stagger: 0.4,
+        ease: "power4.out",
+        scrollTrigger: {
+          trigger: projectsRef.current,
+          start: "top 70%",
+          // markers: true,
+        },
+      },
+    );
+  }, []);
+
   return (
     <section
       id="projects"
@@ -75,10 +112,10 @@ export default function Projects() {
         <div className="mb-16 flex flex-col items-center text-center relative pt-10">
           {/* Floating Badge */}
           <div
-            className="group mb-6 px-5 py-1.5 border border-accent/30 bg-accent/5 rounded-full flex items-center
+            className="badge group mb-6 px-5 py-1.5 border border-accent/30 bg-accent/5 rounded-full flex items-center
                  gap-2 backdrop-blur-sm hover:border-accent transition-colors duration-500"
           >
-            <FaCode className="text-accent text-xs animate-pulse" />
+            <FaCode className=" text-accent text-xs animate-pulse" />
             <span className="text-accent text-[10px] uppercase tracking-[0.5em] font-black">
               Portfolio // Selected
             </span>
@@ -88,7 +125,7 @@ export default function Projects() {
           <div className="relative">
             {/* Large Background Ghost Text (Subtle Outline) */}
             <span
-              className="absolute top-10 left-1/2 -translate-x-1/2 text-8xl md:text-8xl font-black text-white/3 
+              className="ghost absolute top-10 left-1/2 -translate-x-1/2 text-8xl md:text-8xl font-black text-white/3 
                 uppercase tracking-widest select-none whitespace-nowrap hidden md:block"
             >
               Works
@@ -99,13 +136,13 @@ export default function Projects() {
               {/* Background Red Glow */}
               <div className="absolute -inset-x-20 top-1/2 -translate-y-1/2 h-20 bg-accent/20 blur-[80px] -z-10 opacity-50" />
 
-              <h2 className="text-6xl md:text-7xl font-black font-heading text-white uppercase tracking-widest leading-none">
+              <h2 className="project-title text-6xl md:text-7xl font-black font-heading text-white uppercase tracking-widest leading-none">
                 Featured <br className="md:hidden" />
                 <span className="text-transparent bg-clip-text bg-linear-to-b from-accent to-[#b91c1c] relative">
                   Projects
                   <span
                     className="absolute -right-4 bottom-3 w-2 h-2 bg-white rounded-full 
-          shadow-[0_0_15px_rgba(255,255,255,0.8)] hidden md:block animate-bounce"
+                  shadow-[0_0_15px_rgba(255,255,255,0.8)] hidden md:block animate-bounce"
                   />
                 </span>
               </h2>
@@ -113,7 +150,7 @@ export default function Projects() {
           </div>
 
           {/* Modern Geometric Divider */}
-         <div className="flex items-center gap-2 mt-4">
+          <div className="flex items-center gap-2 mt-4 project-divider">
             <div className="w-24 md:w-80 h-0.5 bg-linear-to-r from-transparent to-accent" />
             <div className="w-2 h-2 rounded-full bg-accent animate-pulse shadow-[0_0_10px_#FB2C36]" />
             <div className="w-24 md:w-80 h-0.5 bg-linear-to-l from-transparent to-accent" />
@@ -121,11 +158,14 @@ export default function Projects() {
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div
+          ref={projectsRef}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10"
+        >
           {projects.map((project, index) => (
             <div
               key={index}
-              className="group relative bg-[#111111]/70 backdrop-blur-xl 
+              className="project-card group relative bg-[#111111]/70 backdrop-blur-xl 
               border border-accent/20 rounded-3xl overflow-hidden 
               transition-all duration-500 
               hover:-translate-y-3 hover:shadow-[0_20px_60px_rgba(251,44,54,0.15)]"

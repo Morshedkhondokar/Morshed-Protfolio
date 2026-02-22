@@ -78,7 +78,7 @@ export default function Skills() {
       />
 
       <div className="max-w-6xl mx-auto">
-        {/* Modern Title Section - Added 'skills-title' class */}
+        {/* Modern Title Section  */}
         <div className="skills-title mb-20 flex flex-col items-center text-center">
           <div className="relative inline-block">
             <div className="absolute -inset-x-10 top-1/2 -translate-y-1/2 h-12 bg-accent/10 blur-3xl -z-10" />
@@ -95,7 +95,7 @@ export default function Skills() {
             </h2>
           </div>
 
-          {/* Minimalist Divider - Added 'skills-divider' class */}
+          {/* Minimalist Divider */}
           <div className="skills-divider flex items-center gap-2 mt-4">
             <div className="w-24 md:w-80 h-0.5 bg-linear-to-r from-transparent to-accent" />
             <div className="w-2 h-2 rounded-full bg-accent animate-pulse shadow-[0_0_10px_#FB2C36]" />

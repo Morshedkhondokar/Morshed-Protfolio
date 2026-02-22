@@ -59,7 +59,7 @@ export default function CustomCursor() {
   return (
     <div
       ref={cursorRef}
-      className="hidden lg:block fixed top-0 left-0 w-5 h-5 bg-white rounded-full pointer-events-none z-9999 mix-blend-difference"
+      className="hidden md:block fixed top-0 left-0 w-5 h-5 bg-white rounded-full pointer-events-none z-9999 mix-blend-difference"
     />
   );
 }
